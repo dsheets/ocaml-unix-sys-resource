@@ -1,0 +1,17 @@
+version = "0.1.0"
+description = "Unix sys/resource types and bindings"
+requires = ""
+archive(byte) = "sys_resource.cma"
+archive(bytes, plugin) = "sys_resource.cma"
+archive(native) = "sys_resource.cmxa"
+archive(native, plugin) = "sys_resource.cmxs"
+exists_if = "sys_resource.cma"
+
+package "unix" (
+  requires = "unix-sys-resource unix ctypes.stubs unix-errno.unix"
+  archive(byte) = "unix_sys_resource.cma"
+  archive(bytes, plugin) = "unix_sys_resource.cma"
+  archive(native) = "unix_sys_resource.cmxa"
+  archive(native, plugin) = "unix_sys_resource.cmxs"
+  exists_if = "unix_sys_resource.cma"
+)
