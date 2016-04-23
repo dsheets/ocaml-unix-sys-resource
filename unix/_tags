@@ -1,0 +1,3 @@
+<*.*>: package(ctypes.stubs), package(unix-errno.unix)
+<unix_sys_resource_stubs.c>: use_ctypes, use_sys_resource_util
+<*.{cma,cmxa}>: use_sys_resource_stubs
