@@ -86,11 +86,13 @@ let getrlimit resource =
     let rlimit_ptr =
       Rlimit.(coerce_ptr_to_struct_ptr (Ctypes.allocate typ infinity))
     in
-    ignore (C.getrlimit resource rlimit_ptr);
-    let rlimit =
-      Ctypes.(!@ (coerce (ptr Type.Rlimit.t) (ptr Rlimit.typ) rlimit_ptr))
-    in
-    Rlimit.(rlimit.cur, rlimit.max)
+    if C.getrlimit resource rlimit_ptr <> 0
+    then None
+    else
+      let rlimit =
+        Ctypes.(!@ (coerce (ptr Type.Rlimit.t) (ptr Rlimit.typ) rlimit_ptr))
+      in
+      Some Rlimit.(rlimit.cur, rlimit.max)
   )
 
 let setrlimit resource ~soft ~hard =
@@ -102,5 +104,5 @@ let setrlimit resource ~soft ~hard =
     let rlimit_ptr =
       Rlimit.coerce_ptr_to_struct_ptr (Ctypes.allocate Rlimit.typ rlimit)
     in
-    ignore (C.setrlimit resource rlimit_ptr)
+    if C.setrlimit resource rlimit_ptr <> 0 then None else Some ()
   )
