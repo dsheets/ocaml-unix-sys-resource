@@ -22,12 +22,12 @@ module Types = Unix_sys_resource_types.C(Unix_sys_resource_types_detected)
 
 module C(F: Cstubs.FOREIGN) = struct
 
-  let getrlimit = F.foreign "getrlimit" (
+  let getrlimit = F.(foreign "getrlimit" (
     int @-> ptr Types.Rlimit.t @-> returning int
-  )
+  ))
 
-  let setrlimit = F.foreign "setrlimit" (
+  let setrlimit = F.(foreign "setrlimit" (
     int @-> ptr Types.Rlimit.t @-> returning int
-  )
+  ))
 
 end
