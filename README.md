@@ -6,9 +6,15 @@ provides access to the features exposed in
 [`sys/resource.h`][sys_resource.h] in a way that is not tied to the
 implementation on the host system.
 
+Two findlib packages are provided, `unix-sys-resource` and
+`unix-sys-resource.unix`. The base package provides types but the
+`unix-sys-resource.unix` package is necessary to access the bindings.
+
+### unix-sys-resource
 The [`Sys_resource`][sys_resource] module provides types and functions
 for describing and working with rlimit resources and limits.
 
+### unix-sys-resource.unix
 The [`Sys_resource_unix`][sys_resource_unix] module provides bindings to
 functions that use the types in `Sys_resource`.
 
