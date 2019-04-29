@@ -12,7 +12,7 @@ OCAMLBUILD=CTYPES_LIB_DIR=$(CTYPES_LIB_DIR) OCAML_LIB_DIR=$(OCAML_LIB_DIR) \
 
 WITH_UNIX=$(shell ocamlfind query ctypes unix > /dev/null 2>&1 ; echo $$?)
 
-TARGETS=.cma .cmxa
+TARGETS=.cma .cmxa .cmxs
 
 PRODUCTS=$(addprefix sys_resource,$(TARGETS))
 
